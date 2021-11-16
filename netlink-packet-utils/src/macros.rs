@@ -1,4 +1,4 @@
-#[macro_export]
+#[macro_export(local_inner_macros)]
 macro_rules! getter {
     ($buffer: ident, $name:ident, slice, $offset:expr) => {
         impl<'a, T: AsRef<[u8]> + ?Sized> $buffer<&'a T> {
@@ -60,7 +60,7 @@ macro_rules! getter {
     };
 }
 
-#[macro_export]
+#[macro_export(local_inner_macros)]
 macro_rules! setter {
     ($buffer: ident, $name:ident, slice, $offset:expr) => {
         impl<'a, T: AsRef<[u8]> + AsMut<[u8]> + ?Sized> $buffer<&'a mut T> {
@@ -140,7 +140,7 @@ macro_rules! setter {
     };
 }
 
-#[macro_export]
+#[macro_export(local_inner_macros)]
 macro_rules! buffer {
     ($name:ident($buffer_len:expr) { $($field:ident : ($ty:tt, $offset:expr)),* $(,)? }) => {
         buffer!($name { $($field: ($ty, $offset),)* });
@@ -164,7 +164,7 @@ macro_rules! buffer {
     };
 }
 
-#[macro_export]
+#[macro_export(local_inner_macros)]
 macro_rules! fields {
     ($buffer:ident { $($name:ident : ($ty:tt, $offset:expr)),* $(,)? }) => {
         $(
